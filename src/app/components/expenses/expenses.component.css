@@ -1,0 +1,32 @@
+/* Card tweaks */
+.card { border-radius: 12px; }
+
+/* Ensure inputs look good on very small screens */
+@media (max-width: 575.98px) {
+  .card-body { padding: 1rem; }
+  .list-group-item { padding: 0.75rem 0.9rem; }
+}
+
+/* Make the "amount" column stand out */
+.list-group-item .h6 {
+  color: #111;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+/* Improve delete button touch target */
+.list-group-item .btn {
+  min-width: 72px;
+}
+
+/* Visual spacing for mobile: show category under title on small devices */
+@media (max-width: 767.98px) {
+  .list-group-item { flex-direction: column; align-items: stretch; }
+  .list-group-item .d-flex.align-items-center { justify-content: space-between; margin-top: 8px; }
+}
+
+/* Minor helper for overflow long titles */
+.list-group-item .fw-semibold {
+  word-break: break-word;
+  max-width: 280px;
+}

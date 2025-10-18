@@ -1,0 +1,64 @@
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h3 class="card-title mb-3 text-center">Sign in</h3>
+
+          <form
+            [formGroup]="form"
+            (ngSubmit)="$event.preventDefault()"
+            novalidate
+          >
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input
+                formControlName="email"
+                type="email"
+                class="form-control"
+                placeholder="you@example.com"
+                [class.is-invalid]="
+                  form.get('email')?.invalid && form.get('email')?.touched
+                "
+                required
+              />
+              <div class="invalid-feedback">Please enter a valid email.</div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Password (optional)</label>
+              <input
+                formControlName="password"
+                type="password"
+                class="form-control"
+                placeholder="password (for sign in)"
+              />
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button
+                type="button"
+                class="btn btn-primary btn-lg"
+                (click)="signInPassword()"
+                [disabled]="loading || !form.value.password"
+              >
+                <span *ngIf="!loading">Sign in</span>
+                <span
+                  *ngIf="loading"
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                <span *ngIf="loading" class="visually-hidden">Loading...</span>
+              </button>
+            </div>
+          </form>
+
+          <p class="message text-center mt-3 text-muted" *ngIf="message">
+            {{ message }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
