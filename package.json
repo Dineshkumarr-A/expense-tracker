@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
+    "build": "ng build --configuration production && npm run copy-redirects",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "copy-redirects": "cp _redirects dist/browser/_redirects"
   },
   "private": true,
   "dependencies": {
