@@ -1,0 +1,70 @@
+<aside
+  class="sidebar d-flex flex-column p-3"
+  [class.mini]="isCollapsed()"
+  role="navigation"
+  aria-label="sidebar"
+>
+  <div class="d-flex justify-content-between align-items-center mb-3 gap-2">
+    <button class="logo border-0 rounded-1 p-1 fs-4" (click)="toggleCollapse()">
+      <i class="bi-list"></i>
+    </button>
+    <h6 class="text-white text-uppercase m-0 pe-none">
+      <span class="label">Expense Tracker</span>
+    </h6>
+    @if(!isCollapsed()) {
+    <button
+      class="btn btn-sm btn-outline-light border-0 fs-4 p-0"
+      (click)="closeSideNav()"
+    >
+      <i class="bi bi-x close-icon"></i>
+    </button>
+    }
+  </div>
+  <ul class="nav nav-pills flex-column gap-1">
+    @for(item of navBar; track item) {
+    <li class="nav-item" [class.expanded]="item.expanded">
+      @if(!item.children?.length) {
+      <a
+        [routerLink]="item.routerLink"
+        routerLinkActive="active"
+        class="nav-link d-flex align-items-center"
+      >
+        <i class="bi {{ item.icon }} me-2"></i>
+        <span class="label">{{ item.label }}</span>
+      </a>
+      } @else if (item.children && item.children.length > 0) {
+      <button
+        class="nav-link w-100 d-flex align-items-center justify-content-between group-btn"
+        (click)="toggleExpand(item)"
+        [attr.aria-expanded]="item.expanded"
+      >
+        <span class="d-flex align-items-center">
+          <i class="fa {{ item.icon }} me-2"></i>
+          <span class="label">{{ item.label }}</span> </span
+        >@if(!isCollapsed()) {
+        <i
+          class="bi {{ item.expanded ? 'bi-chevron-up' : 'bi-chevron-down' }}"
+        ></i>
+        }
+      </button>
+      <div [ngbCollapse]="!item.expanded" class="submenu">
+        <ul class="nav flex-column ms-3">
+          @for(child of item.children; track child) {
+          <li class="nav-item">
+            <a
+              [routerLink]="child.routerLink"
+              routerLinkActive="active"
+              class="nav-link d-flex align-items-center"
+            >
+              <i class="bi {{ child.icon }} me-2"></i>
+              <span class="label">{{ child.label }}</span>
+            </a>
+          </li>
+          }
+        </ul>
+      </div>
+      }
+    </li>
+    }
+  </ul>
+</aside>

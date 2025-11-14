@@ -1,0 +1,18 @@
+.body {
+  width: calc(100% - 5rem);
+  margin-left: 5rem;
+  transition: all 0.5s ease;
+  background: #f4f7fa;
+  min-height: 100vh;  /* fill viewport */
+  overflow-y: auto;   /* scroll inside content if needed */
+}
+
+.body-trimmed {
+  width: calc(100% - 16.5625rem);
+  margin-left: 16.5625rem;
+}
+
+.body-md-screen {
+  width: calc(100% - 5rem);
+  margin-left: 5rem;
+}
